@@ -56,16 +56,16 @@ class Tokeniser {
 		}
 
 		if (this._codepoint == 0) {
-			return "#EOF";
+			return "#_EOF";
 		} else if (this._alphas.contains(this._codepoint)) {
 			var value = this.acceptChars(this._alphas);
 			var symbol = this._keywords[value];
 			if (symbol != null) return symbol;
 			this._value = value;
-			return "#ID";
+			return "#_ID";
 		} else if (this._digits.contains(this._codepoint)) {
 			this._value = this.acceptChars(this._digits);
-			return "#NUM";
+			return "#_NUM";
 		} else if (this._operators.contains(this._codepoint)) {
 			return this.acceptChars(this._operators);
 		} else {

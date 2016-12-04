@@ -33,7 +33,7 @@ class ParserBuilder {
 		for (var symbol in symbols) {
 			if (!symbol.startsWith("#")) continue;
 			symbol = symbol.substring(1);
-			if (symbol.toLowerCase() == symbol) this._tokeniser.addKeyword(symbol);
+			this._tokeniser.addKeyword(symbol);
 		}
 
 		return new Parser(this._tokeniser, this._grammar, isDebugMode);

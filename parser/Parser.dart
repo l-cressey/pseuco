@@ -15,7 +15,7 @@ class Parser {
 		this._grammar = grammar;
 		this._isDebugMode = isDebugMode;
 
-		var startRule = this._grammar.addRule("#START : start #EOF #EOF");
+		var startRule = this._grammar.addRule("#START : start #_EOF #_EOF");
 		var startItems = new Set();
 		startItems.add(new Item.fromRule(null, startRule));
 		this._startState = new State(this._grammar, null, startItems);
@@ -36,12 +36,12 @@ class Parser {
 
 			var sTree = null;
 
-			if (symbol == "#NUM" || symbol == "#ID") {
+			if (symbol.startsWith("#_")) {
 				sTree = new STree.leaf(symbol, value);
 			}
 
 			state = state.advance(symbol, sTree);
-			if (symbol == "#EOF") break;
+			if (symbol == "#_EOF") break;
 		}
 
 		if (state.numItems == 0) {

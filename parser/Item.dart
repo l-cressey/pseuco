@@ -23,6 +23,8 @@ class Item {
 
 	STree reduce() {
 		if (this.dotPos != this.rule.length) return null;
+		if (this.rule.name == "nop") return this.sTree;
+
 		var children = [];
 		for (var item = this; item != null; item = item.parent) {
 			var sTree = item.sTree;
